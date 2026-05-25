@@ -15,6 +15,7 @@ Further info:
 from garak.probes.base import Probe
 from datasets import load_dataset
 import logging
+from garak import _config
 
 class LLMailInject(Probe):
     """
@@ -31,10 +32,10 @@ class LLMailInject(Probe):
     b_type = "injection"
     name = "LLMailInject"
     description = "Tests if an agentic LLM executes unauthorized tool calls from untrusted emails."
-    primary_detector = "agentic.ActionDetector"
+    primary_detector = "detectors.llmail_inject.ActionDetector"
     
-    def __init__(self):
-        super().__init__()
+    def __init__(self, config_root=_config):
+        super().__init__(config_root=config_root)
         self.prompts = []
         self._load_data()
 
