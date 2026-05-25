@@ -1,0 +1,32 @@
+[project]
+name = "garak"
+version = "0.15.1.pre1"
+description = "LLM vulnerability scanner"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[dependencies]
+python = ">=3.10,<3.13"
+
+[pypi-dependencies]
+garak = { path = ".", editable = true }
+
+[feature.tests.pypi-dependencies]
+pytest = ">=8.0"
+pytest-mock = ">=3.14.0"
+requests-mock = "==1.12.1"
+respx = ">=0.21.1"
+pytest-cov = ">=5.0.0"
+pytest_httpserver = ">=1.1.0"
+pytest-asyncio = ">=0.21.0"
+langcodes = ">=3.4.0"
+cryptography = ">=47.0.0"
+
+[feature.lint.pypi-dependencies]
+black = ">=26.1.0"
+pylint = ">=3.1.0"
+
+[environments]
+default = { solve-group = "default" }
+tests = { features = ["tests"], solve-group = "default" }
+lint = { features = ["lint"], solve-group = "default" }
