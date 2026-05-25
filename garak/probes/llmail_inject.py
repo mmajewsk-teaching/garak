@@ -39,7 +39,7 @@ class LLMailInject(Probe):
         self.prompts = []
         self._load_data()
 
-    def _load_data(self):
+    def _load_data(self, max_prompts: int = 100):
         """
         Loads the Microsoft LLMail-Inject dataset 
         and extracts attack prompts from Phase1.
@@ -59,6 +59,6 @@ class LLMailInject(Probe):
 
         logging.debug(f"Using '{text_col}' as attack prompt source.")
 
-        self.prompts = [str(item[text_col]) for item in dataset[target_split]]
+        self.prompts = [str(item[text_col]) for item in dataset[target_split]][:max_prompts]
         
         logging.debug(f"Loaded {len(self.prompts)} attack prompts.")
